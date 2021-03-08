@@ -1,2 +1,2 @@
 # desenvolvimento-avancado-em-java
-Programação avançada em Java pela plataforma Digital Innovation One
+Paradigma Funcional em Java pela plataforma Digital Innovation One
