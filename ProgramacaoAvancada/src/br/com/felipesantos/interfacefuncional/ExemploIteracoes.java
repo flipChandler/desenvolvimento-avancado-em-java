@@ -1,5 +1,7 @@
 package br.com.felipesantos.interfacefuncional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -21,8 +23,23 @@ public class ExemploIteracoes {
 		System.out.println("\n\n-----IMPRIMIR O DOBRO DE CADA NÚMERO DA LISTA------");
 		imprimirODobroDeCada(numeros);
 
-		System.out.println("\n\n-----IMPRIMIR O DOBRO DE CADA NÚMERO DA LISTA STREAM------");
-		imprimirODobroDeCadaStream(numeros);		
+		System.out.println("\n\n-----IMPRIMIR O DOBRO DE CADA NÚMERO DA LISTA STREAM------\n");
+		imprimirODobroDeCadaStream(numeros);
+		
+		System.out.println("\n\n-----IMPRIMIR GERENTES-----");
+		List<String> profissoes = new ArrayList<>();
+		profissoes.add("Dev");
+		profissoes.add("Gerente Financeiro");
+		profissoes.add("Gerente de Marketing");
+		profissoes.add("CEO");
+		profissoes.add("Analista Jurídico");
+		profissoes.add("Gerente de TI");
+		profissoes.add("Meia oficial oreia seca");
+		
+		profissoes.stream()
+			.filter(profissao -> profissao.startsWith("Gerente"))
+			.forEach(System.out::println);
+		
 		
 		
 	}
