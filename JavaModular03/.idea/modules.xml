@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/JavaModular03.iml" filepath="$PROJECT_DIR$/JavaModular03.iml" />
+      <module fileurl="file://$PROJECT_DIR$/felipe.santos.core/felipe.santos.core.iml" filepath="$PROJECT_DIR$/felipe.santos.core/felipe.santos.core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/felipe.santos.test/felipe.santos.test.iml" filepath="$PROJECT_DIR$/felipe.santos.test/felipe.santos.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/felipe.santos.utils/felipe.santos.utils.iml" filepath="$PROJECT_DIR$/felipe.santos.utils/felipe.santos.utils.iml" />
+    </modules>
+  </component>
+</project>
