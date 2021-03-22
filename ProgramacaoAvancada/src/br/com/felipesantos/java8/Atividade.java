@@ -1,6 +1,6 @@
 package br.com.felipesantos.java8;
 
 public interface Atividade {
-	void realizar() throws InterruptedException;	
+	String realizar() throws InterruptedException;	
 	
 }

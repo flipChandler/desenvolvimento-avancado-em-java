@@ -14,19 +14,25 @@ public class Quarto extends Comodo{
 			);
 	}
 	
-	private void arrumarGuardaRoupa() throws InterruptedException  {
+	private String arrumarGuardaRoupa() throws InterruptedException  {
 		Thread.sleep(5000);
-		System.out.println("Arrumar o guarda-roupa!");
+		String msg = "Arrumar o guarda-roupa!";
+		System.out.println(msg);
+		return msg;
 	}
 
-	private void varrerOQuarto() throws InterruptedException {		
-		Thread.sleep(5000);
-		System.out.println("Varrer o quarto!");
+	private String varrerOQuarto() throws InterruptedException  {		
+		Thread.sleep(7000);
+		String msg = "Varrer o quarto!";
+		System.out.println(msg);
+		return msg;
 	}
 	
-	private void arrumarACama() throws InterruptedException {
-		Thread.sleep(5000);
-		System.out.println("Arrumar a cama!");
+	private String arrumarACama() throws InterruptedException  {
+		Thread.sleep(10000);
+		String msg = "Arrumar a cama!";
+		System.out.println(msg);
+		return msg;
 	}
 
 }
