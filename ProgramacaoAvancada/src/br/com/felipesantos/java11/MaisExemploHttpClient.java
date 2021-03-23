@@ -37,11 +37,11 @@ public class MaisExemploHttpClient {
 	
 	
 	private static void connectAkamaiHttp1Client() throws Exception {
-		System.out.println("Running HTTP/1.1 example ...");
+		System.out.println("Running HTTP/2 example ...");
 
 		try {
 			HttpClient httpClient = HttpClient.newBuilder()
-					.version(HttpClient.Version.HTTP_1_1)
+					.version(HttpClient.Version.HTTP_2)
 					.proxy(ProxySelector.getDefault())
 					.build();
 			
