@@ -44,8 +44,8 @@ public class MaisExemploHttpClient {
 					.version(HttpClient.Version.HTTP_1_1)
 					.proxy(ProxySelector.getDefault())
 					.build();
-
-			long start = System.currentTimeMillis() ;
+			
+			long start = System.currentTimeMillis();
 
 			HttpRequest request = HttpRequest.newBuilder()
 					.uri(URI.create("https://http2.akamai.com/demo/h2_demo_frame.html"))
