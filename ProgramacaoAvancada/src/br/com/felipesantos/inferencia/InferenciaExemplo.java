@@ -13,11 +13,11 @@ public class InferenciaExemplo {
 
 	public static void main(String[] args) throws IOException {
 		
-		//connectAndPrintURLJavaOracle();
+		connectAndPrintURLJavaOracle();
 		//printNomeCompleto("Felipe", "Santos");
-		System.out.println("Soma de 9 e 3 = " + somar(9, 3));
+		//System.out.println("Soma de 9 e 3 = " + somar(9, 3));
 		
-		somar(7, 56, 98);
+		//somar(7, 56, 98);
 	}
 
 	public static void printNomeCompleto(String nome, String sobrenome) {
@@ -47,11 +47,13 @@ public class InferenciaExemplo {
 		var url = new URL("https://docs.oracle.com/en/java/javase/11/docs/api/index.html");
 		var urlConnection = url.openConnection(); // abre uma conexão da url
 
-		// pegar as informações e seprar em linhas
-		var bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream())); 
-
-		System.out.println(bufferedReader.lines()
-				.collect(Collectors.joining()).replaceAll(">", ">\n")); // para quebrar a linha
+		try(var bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()))) {
+			System.out.println(bufferedReader.lines()
+					.collect(Collectors.joining()).replaceAll(">", ">\n")); // para quebrar a linha
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 }
