@@ -29,70 +29,70 @@ public class MaisExemploHttpClient {
 		}		
 	});
 	
-	public static void main(String[] args) throws IOException, InterruptedException {
+	public static void main(String[] args) throws Exception {
 		//connectAndPrintURLJavaOracleHttpClient();
 		connectAkamaiHttp1Client();
 
 	}
 	
 	
-	private static void connectAkamaiHttp1Client() {
+	private static void connectAkamaiHttp1Client() throws Exception {
 		System.out.println("Running HTTP/1.1 example ...");
-		
+
 		try {
 			HttpClient httpClient = HttpClient.newBuilder()
 					.version(HttpClient.Version.HTTP_1_1)
 					.proxy(ProxySelector.getDefault())
 					.build();
-			
+
 			long start = System.currentTimeMillis();
-			
+
 			HttpRequest request = HttpRequest.newBuilder()
 					.uri(URI.create("https://http2.akamai.com/demo/h2_demo_frame.html"))
 					.build();
-			
+
 			HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-			
+
 			System.out.println("Status code: " + response.statusCode());
 			System.out.println("Response Header: " + response.headers());
 			String responseBody = response.body();
 			System.out.println(responseBody);
-			
+
 			List<Future<?>> listFuture = new ArrayList<>();
-			
+
 			responseBody.lines()
-				.filter(line -> line.trim().startsWith("<img height"))
-				.map(line -> line.substring(line.indexOf("src='") + 5, line.indexOf("'/>")))
-				.forEach(image -> {
-					Future<?> imgFuture = executor.submit(() -> {
-						HttpRequest imgRequest = HttpRequest.newBuilder()
-								.uri(URI.create("https://http2.akamai.com" + image))
-								.build();
-						
-						try {
-							HttpResponse<String> imgResponse = httpClient.send(imgRequest, HttpResponse.BodyHandlers.ofString());
-							System.out.println("Imagem carregada :: " + image + ", status code: " + imgResponse.statusCode());
-						} catch (IOException | InterruptedException e) {
-							e.printStackTrace();
-						}
-					});
-					listFuture.add(imgFuture);
-					System.out.println("Submetido um futuro para imagem :: " + image);					
+			.filter(line -> line.trim().startsWith("<img height"))
+			.map(line -> line.substring(line.indexOf("src='") + 5, line.indexOf("'/>")))
+			.forEach(image -> {
+				Future<?> imgFuture = executor.submit(() -> {
+					HttpRequest imgRequest = HttpRequest.newBuilder()
+							.uri(URI.create("https://http2.akamai.com" + image))
+							.build();
+
+					try {
+						HttpResponse<String> imgResponse = httpClient.send(imgRequest, HttpResponse.BodyHandlers.ofString());
+						System.out.println("Imagem carregada :: " + image + ", status code: " + imgResponse.statusCode());
+					} catch (IOException | InterruptedException e) {
+						System.out.println("Erro durante requisição de imagem" + image);
+					}
 				});
-			
+				listFuture.add(imgFuture);
+				System.out.println("Submetido um futuro para imagem :: " + image);					
+			});
+
 			listFuture.forEach(f -> {
 				try {
 					f.get();
 				} catch (InterruptedException | ExecutionException e) {
-					e.printStackTrace();
+					System.out.println("Erro ao esperar carregar imagem do futuro!");
 				}
 			});
-			
+
 			long end = System.currentTimeMillis();
 			System.out.println("Tempo de carregamento total :: " + (end - start) + " ms");
-					
-		} catch (Exception e) {
-			// TODO: handle exception
+
+		} finally {
+			executor.shutdown();
 		}
 	}
 	
